@@ -114,4 +114,7 @@ theme_config:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: git@github.com:yuanchenxi95/chenxi-blog.git
+  branch: gh-pages
+  message: update blog
