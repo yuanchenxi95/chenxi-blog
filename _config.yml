@@ -97,19 +97,19 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: brewski
-theme_config:
-  logo:
-#  google_analytics: UA-XXXXXXXX-X
-  copyright:
-    since: 2021
-    name: Chenxi Yuan
-    url: https://github.com/yuanchenxi95
-  menu:
-    Home: /
-    About: /about
-    GitHub: https://github.com/yuanchenxi95
-    RSS: /atom.xml
+theme: landscape
+#theme_config:
+#  logo:
+##  google_analytics: UA-XXXXXXXX-X
+#  copyright:
+#    since: 2021
+#    name: Chenxi Yuan
+#    url: https://github.com/yuanchenxi95
+#  menu:
+#    Home: /
+#    About: /about
+#    GitHub: https://github.com/yuanchenxi95
+#    RSS: /atom.xml
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
