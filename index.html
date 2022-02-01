@@ -32,7 +32,7 @@
 <link rel="stylesheet" href="/chenxi-blog/fancybox/jquery.fancybox.min.css">
 
   
-<meta name="generator" content="Hexo 5.4.0"></head>
+<meta name="generator" content="Hexo 6.0.0"></head>
 
 <body>
   <div id="container">
@@ -70,6 +70,63 @@
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-HTTP新method-Query" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/chenxi-blog/2022/01/31/HTTP%E6%96%B0method-Query/" class="article-date">
+  <time class="dt-published" datetime="2022-02-01T07:50:36.000Z" itemprop="datePublished">2022-01-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/chenxi-blog/2022/01/31/HTTP%E6%96%B0method-Query/">HTTP新method: Query</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>About: IETF最近的一个关于HTTP新method的proposal</p>
+<h2 id="GET为什么不应该有body"><a href="#GET为什么不应该有body" class="headerlink" title="GET为什么不应该有body"></a>GET为什么不应该有body</h2><p>根据 [HTTP Spec] <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc7231#section-4.3.1">5</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A payload within a GET request message has no defined semantics</span><br></pre></td></tr></table></figure>
+<p>GET request的payload是没有定义的，可以理解为<a target="_blank" rel="noopener" href="https://evertpot.com/get-request-bodies/">C语言中的undefined behavior</a>，文章中还提到了，<br>GET bodies从不被 [Fetch] <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">4</a> 支持，变成了虽然支持，但是会警告开发者尽量不要用。</p>
+<p>因为是 undefined behavior，所以 GET 请求中的 Body，理论上来讲可以被随意处理，像HackerNews<br>上这个 [Comment] <a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=30155696">6</a> 所说的:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">... </span><br><span class="line">GET with a body is iffy. If you owned the entire stack it might be doable. </span><br><span class="line">...</span><br><span class="line">Proxies or firewalls can just drop the message and be completely HTTP compliant.</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>GET的body是具有不确定性的，Load Balancer理论上是可以直接丢掉Body内容的。</p>
+<h2 id="新Method-“QUERY”有什么好处"><a href="#新Method-“QUERY”有什么好处" class="headerlink" title="新Method “QUERY”有什么好处"></a>新Method “QUERY”有什么好处</h2><h3 id="Safe-and-Idempotent"><a href="#Safe-and-Idempotent" class="headerlink" title="Safe and Idempotent"></a>Safe and Idempotent</h3><p>[Proposal Section 2] <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-safe-method-w-body-02#section-2">7</a><br>里提到的最重要的好处是safe和Idempotent。</p>
+<p>对比POST，QUERY不应改变服务器上的内容，也就是只读请求，而且QUERY同样也应该是幂等的，<br>“以相同的请求调用这个接口一次和调用这个接口多次，对系统产生的影响是相同的”。</p>
+<h3 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a>Caching</h3><p>[Proposal Section 2.1] <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-safe-method-w-body-02#section-2.1">2</a> 所提到的，QUERY支持[HTTP caching的标准] <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-cache-19#section-4">3</a>。</p>
+<p>综合来看，QUERY相当于是一个支持了Body的GET。对比传统通过POST来传Body实现复杂查询，有一些优势。</p>
+<h2 id="Thoughts"><a href="#Thoughts" class="headerlink" title="Thoughts"></a>Thoughts</h2><p>HTTP定义的这些方法在当前真的符合各个不同应用的需求吗，HTTP是否应该在它这一层去定义这些方法，<br>是否应该由一层只处理单向或双向的消息通讯协议， 其余的逻辑，由更上层的协议去做。<br>像GraphQL在HTTP POST之上定义自己的Query和Mutation逻辑。</p>
+<h1 id="References"><a href="#References" class="headerlink" title="References:"></a>References:</h1><ol>
+<li><a target="_blank" rel="noopener" href="https://evertpot.com/get-request-bodies/">Request bodies in GET requests</a></li>
+<li><a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-safe-method-w-body-02">The HTTP QUERY Method</a></li>
+<li><a target="_blank" rel="noopener" href="https://news.ycombinator.com/item?id=30129631">Hackernews Thread: Request bodies in GET requests</a></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2022/01/31/HTTP%E6%96%B0method-Query/" data-id="ckz3vbt5r0001z5nh0zw72rg1" data-title="HTTP新method: Query" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/chenxi-blog/tags/HTTP/" rel="tag">HTTP</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-Kotlin-Coroutine-LockFreeTaskQueue-源码注释" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
@@ -121,7 +178,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/11/09/Kotlin-Coroutine-LockFreeTaskQueue-%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A/" data-id="ckvtaajp60001hwnh3xbqel7l" data-title="Kotlin Coroutine LockFreeTaskQueue 源码注释" class="article-share-link">Share</a>
+      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/11/09/Kotlin-Coroutine-LockFreeTaskQueue-%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A/" data-id="ckz3vbt5s0002z5nh409j4qej" data-title="Kotlin Coroutine LockFreeTaskQueue 源码注释" class="article-share-link">Share</a>
       
       
       
@@ -172,7 +229,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/11/09/hello-world/" data-id="ckvtaajp70002hwnhe3svbq30" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/11/09/hello-world/" data-id="ckz3vbt5u0004z5nhgcq20924" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -215,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/06/27/%E8%A7%86%E9%A2%91%E7%B1%BB%E5%BA%94%E7%94%A8%E7%9A%84%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" data-id="ckvtaajp90004hwnhblgua0tt" data-title="视频类应用的体验总结" class="article-share-link">Share</a>
+      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/06/27/%E8%A7%86%E9%A2%91%E7%B1%BB%E5%BA%94%E7%94%A8%E7%9A%84%E4%BD%93%E9%AA%8C%E6%80%BB%E7%BB%93/" data-id="ckz3vbt5u0006z5nh849abpp6" data-title="视频类应用的体验总结" class="article-share-link">Share</a>
       
       
       
@@ -257,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/06/23/My-First-Blog/" data-id="ckvtaajp80003hwnh4kppegus" data-title="My First Blog" class="article-share-link">Share</a>
+      <a data-url="http://yuanchenxi.github.io/chenxi-blog/2021/06/23/My-First-Blog/" data-id="ckz3vbt5u0005z5nhbmozd1w3" data-title="My First Blog" class="article-share-link">Share</a>
       
       
       
@@ -282,7 +339,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Reviews/" rel="tag">Reviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Summary/" rel="tag">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Thoughts/" rel="tag">Thoughts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Video-Apps/" rel="tag">Video Apps</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/HTTP/" rel="tag">HTTP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Reviews/" rel="tag">Reviews</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Summary/" rel="tag">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Thoughts/" rel="tag">Thoughts</a></li><li class="tag-list-item"><a class="tag-list-link" href="/chenxi-blog/tags/Video-Apps/" rel="tag">Video Apps</a></li></ul>
     </div>
   </div>
 
@@ -292,7 +349,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/chenxi-blog/tags/Reviews/" style="font-size: 10px;">Reviews</a> <a href="/chenxi-blog/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/chenxi-blog/tags/Thoughts/" style="font-size: 10px;">Thoughts</a> <a href="/chenxi-blog/tags/Video-Apps/" style="font-size: 10px;">Video Apps</a>
+      <a href="/chenxi-blog/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/chenxi-blog/tags/Reviews/" style="font-size: 10px;">Reviews</a> <a href="/chenxi-blog/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/chenxi-blog/tags/Thoughts/" style="font-size: 10px;">Thoughts</a> <a href="/chenxi-blog/tags/Video-Apps/" style="font-size: 10px;">Video Apps</a>
     </div>
   </div>
 
@@ -301,7 +358,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/chenxi-blog/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/chenxi-blog/archives/2021/06/">June 2021</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/chenxi-blog/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/chenxi-blog/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/chenxi-blog/archives/2021/06/">June 2021</a></li></ul>
     </div>
   </div>
 
@@ -312,6 +369,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/chenxi-blog/2022/01/31/HTTP%E6%96%B0method-Query/">HTTP新method: Query</a>
+          </li>
         
           <li>
             <a href="/chenxi-blog/2021/11/09/Kotlin-Coroutine-LockFreeTaskQueue-%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A/">Kotlin Coroutine LockFreeTaskQueue 源码注释</a>
@@ -342,7 +403,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2021 Chenxi Yuan<br>
+      &copy; 2022 Chenxi Yuan<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
