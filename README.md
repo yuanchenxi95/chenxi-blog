@@ -2,7 +2,7 @@
 
 
 ## Link
-https://yuanchenxi95.github.io/chenxi-blog/
+https://blog.yuanchenxi95.com/
 
 
 ## Quick Start
