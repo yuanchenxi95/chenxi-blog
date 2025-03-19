@@ -2,25 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.yuanchenxi95.com/2025/03/18/%E5%B0%8F%E7%B1%B3%E9%9B%86%E5%9B%A22024%E5%B9%B4%E6%8A%A5/</loc>
+    
+    <lastmod>2025-03-19</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.yuanchenxi95.com/2025/02/13/tech-blog-index/</loc>
-    
-    <lastmod>2025-02-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.yuanchenxi95.com/2021/11/09/Kotlin-Coroutine-LockFreeTaskQueue-%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A/</loc>
-    
-    <lastmod>2025-02-14</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.yuanchenxi95.com/2021/06/23/My-First-Blog/</loc>
     
     <lastmod>2025-02-14</lastmod>
     
@@ -39,6 +30,24 @@
   
   <url>
     <loc>https://blog.yuanchenxi95.com/2024/07/19/Netflix%E8%B4%A2%E6%8A%A52024Q2%E6%80%BB%E7%BB%93/</loc>
+    
+    <lastmod>2025-02-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yuanchenxi95.com/2021/11/09/Kotlin-Coroutine-LockFreeTaskQueue-%E6%BA%90%E7%A0%81%E6%B3%A8%E9%87%8A/</loc>
+    
+    <lastmod>2025-02-14</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yuanchenxi95.com/2021/06/23/My-First-Blog/</loc>
     
     <lastmod>2025-02-14</lastmod>
     
@@ -67,7 +76,7 @@
 
   <url>
     <loc>https://blog.yuanchenxi95.com/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -75,49 +84,63 @@
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/HTTP/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Earnings/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Netflix/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yuanchenxi95.com/tags/Xiaomi/</loc>
+    <lastmod>2025-03-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.yuanchenxi95.com/tags/xiacy/</loc>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Thoughts/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Reviews/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Video-Apps/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>https://blog.yuanchenxi95.com/tags/Summary/</loc>
-    <lastmod>2025-02-14</lastmod>
+    <lastmod>2025-03-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
